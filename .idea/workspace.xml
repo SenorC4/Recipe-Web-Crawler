@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eb0fdf02-a424-4169-b581-36b34fdbebc8" name="Changes" comment="" />
+    <list default="true" id="eb0fdf02-a424-4169-b581-36b34fdbebc8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Site.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebCrawler/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebCrawler/src/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +27,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Noah/source/repos/Recipe-Web-Crawler"
+    "last_opened_file_path": "C:/Users/lukel/Documents/GitHub/Recipe-Web-Crawler"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -35,6 +39,7 @@
       <option name="presentableId" value="Default" />
       <updated>1662072070932</updated>
       <workItem from="1662072081263" duration="169000" />
+      <workItem from="1662098101759" duration="5740000" />
     </task>
     <servers />
   </component>

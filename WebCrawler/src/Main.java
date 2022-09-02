@@ -4,26 +4,86 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
+
+    ///change this for different number of recipes
+    static int numOfRecipes = 96;
+    //Change this for different number of recipes
+
     public static void main(String[] args) throws IOException, InterruptedException {
-        //test gitcomment
-        HttpClient client = HttpClient.newHttpClient();
+        String out = "Author,Path,Name,Servings,Ingredients,Instructions\n";
 
-        //get request to grab site.main
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://www.surlatable.com/recipes/?srule=best-matches&start=0&sz=24")).GET().build();
+        //get source files in an arrayList of strings
+        ArrayList<String> recipesUrls = getSource();
 
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        //debug only
+        for(int i = 0; i < recipesUrls.size(); i++){
+            System.out.println(i + " " + recipesUrls.get(i));
+        }
 
-        //output to a file, so it's easy to mess with (you won’t be for your finished program)
-        FileOutputStream fs = new FileOutputStream("Site.txt");
+        //get information and put into comma separated string
+        for(int i = 0; i < numOfRecipes; i++){
+            out += getRecipe(recipesUrls.get(i)) + "\n";
+        }
+
+        //Write string to csv
+        FileOutputStream fs = new FileOutputStream("Recipes.csv");
         PrintWriter pw = new PrintWriter(fs);
-        pw.println(response.body()); //response.body() is the html source code in a string format. It outputs to a file, so you can see it easier right now, but you will ultimately want to just manipulate the strings a lot
+        pw.println(out);
         pw.close();
 
+    }
+
+    public static ArrayList<String> getSource() throws IOException, InterruptedException {
+
+        //arraylist to hold all urls for different pages ex 1-24 25-48...
+        ArrayList<String> urls = new ArrayList<String>();
+        String url = "https://www.surlatable.com/recipes/?srule=best-matches&start=0&sz=24";
+
+        //create urls
+        for(int i = 0; i < numOfRecipes; i+=24){
+            urls.add("https://www.surlatable.com/recipes/?srule=best-matches&start=" + i + "&sz=24");
+        }
+
+        HttpClient client = HttpClient.newHttpClient();
+        
+        //holds all urls for all recipes
+        ArrayList<String> recipeUrls = new ArrayList<String>();
+
+        //get request each site page and grab 24 recipe urls
+        for(int i = 0; i < urls.size();i++ ) {
+            int start = 0;
+            int end = 0;
+            //get request to grab site.main
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create(urls.get(i))).GET().build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            //grab recipe urls from sites
+            for(int j = 0; j < 24; j++) {
+
+                start = response.body().indexOf("thumb-link", end) + 18;
+                end = response.body().indexOf('"', start);
+
+                recipeUrls.add(response.body().substring(start, end));
+
+            }
+            //Delay for the sake of Sur La Tables infrastructure
+            TimeUnit.SECONDS.sleep(10);
+
+        }
+        return recipeUrls;
+    }
+    
+    public static String getRecipe(String url){
+        String recipe = "Recipe, name";
         
 
-
-
+        
+        return recipe;
     }
+
 }
