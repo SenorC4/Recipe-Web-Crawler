@@ -6,6 +6,8 @@ import java.net.http.HttpResponse;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+import java.net.URLDecoder;
+
 
 public class Main {
 
@@ -48,7 +50,10 @@ public class Main {
             //get author
             start = response.body().indexOf("By ", end) + 3;
             end = response.body().indexOf("\n", start);
-            recipe += response.body().substring(start, end) + ",";
+            String author = response.body().substring(start, end) + ",";
+            //author = URLDecoder.decode(author);
+            author = author.replaceAll("\\<.*?\\>" , "").replace("\n", " ").replace(",", "");
+            recipe += author + ",";
 
 
             //get path
@@ -59,16 +64,35 @@ public class Main {
             //get servings
             if(response.body().indexOf("Makes") > 1) {
                 start = response.body().indexOf("Makes") + 6;
-                end = response.body().indexOf(" servings", start);
+
+                if(response.body().indexOf("ervings", start) > 1)
+                    end = response.body().indexOf("ervings", start) - 2;
+                else if(response.body().indexOf(" cups", start) > 1){
+                    end = response.body().indexOf(" cups", start);
+                }
+
                 recipe += response.body().substring(start, end) + ",";
             }else{
                 recipe += "1,";
             }
 
             //get ingredients
+            start = response.body().indexOf("recipe-details-ingredients") + 34;
+            end = response.body().indexOf("<br><br>", start);
+            String ingredients = response.body().substring(start, end) + ",";
 
+            ingredients = ingredients.replaceAll("\\<.*?\\>" , "").replace("\n", " ").replace(",", "");
+
+            recipe += ingredients + ",";
 
             //get Instructions
+            start = response.body().indexOf("recipe-details-procedure") + 27;
+            end = response.body().indexOf("<br><br>\n", start);
+            String instructions = response.body().substring(start, end) + ",";
+
+            instructions = instructions.replaceAll("\\<.*?\\>" , "").replace("\n", " ").replace(",", "");
+
+            recipe += instructions;
 
             //fix html encode for stupid names (L&eacute'ku&eacute;)
 
@@ -90,7 +114,6 @@ public class Main {
 
         //arraylist to hold all urls for different pages ex 1-24 25-48...
         ArrayList<String> urls = new ArrayList<String>();
-        String url = "https://www.surlatable.com/recipes/?srule=best-matches&start=0&sz=24";
 
         //create urls
         for(int i = 0; i < numOfRecipes; i+=24){
@@ -126,6 +149,12 @@ public class Main {
 
         }
         return recipeUrls;
+    }
+
+    public static String formatRecipe(String instructions){
+
+
+        return instructions;
     }
 
 }
