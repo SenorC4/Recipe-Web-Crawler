@@ -10,11 +10,11 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 
     ///change this for different number of recipes
-    static int numOfRecipes = 96;
+    static int numOfRecipes = 4;
     //Change this for different number of recipes
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        String out = "Author,Path,Name,Servings,Ingredients,Instructions\n";
+        String out = "Name,Author,Path,Servings,Ingredients,Instructions\n";
 
         //get source files in an arrayList of strings
         ArrayList<String> recipesUrls = getSource();
@@ -24,9 +24,58 @@ public class Main {
             System.out.println(i + " " + recipesUrls.get(i));
         }
 
+
         //get information and put into comma separated string
         for(int i = 0; i < numOfRecipes; i++){
-            out += getRecipe(recipesUrls.get(i)) + "\n";
+            //name,Author,Path,Name,Servings,Ingredients,Instructions
+            String recipe = "";
+            int start = 0;
+            int end = 0;
+
+            //get recipe site
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create(recipesUrls.get(i))).GET().build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            //get name
+            String name = "";
+            start = response.body().indexOf("recipe-name") + 13;
+            end = response.body().indexOf("</h1>", start);
+            name = response.body().substring(start, end);
+            recipe+= name + ",";
+
+
+            //get author
+            start = response.body().indexOf("By ", end) + 3;
+            end = response.body().indexOf("\n", start);
+            recipe += response.body().substring(start, end) + ",";
+
+
+            //get path
+            start = response.body().lastIndexOf("\"@id\":\"https://www.surlatable.com/recipes/", end) + 33;
+            end = response.body().indexOf("\",\"", start);
+            recipe += "home" + response.body().substring(start, end) + name + ",";
+
+            //get servings
+            if(response.body().indexOf("Makes") > 1) {
+                start = response.body().indexOf("Makes") + 6;
+                end = response.body().indexOf(" servings", start);
+                recipe += response.body().substring(start, end) + ",";
+            }else{
+                recipe += "1,";
+            }
+
+            //get ingredients
+
+
+            //get Instructions
+
+            //fix html encode for stupid names (L&eacute'ku&eacute;)
+
+
+            out += recipe + "\n";
+
+            System.out.println(i + ": " + out);
         }
 
         //Write string to csv
@@ -55,6 +104,7 @@ public class Main {
 
         //get request each site page and grab 24 recipe urls
         for(int i = 0; i < urls.size();i++ ) {
+            System.out.println("Getting first file");
             int start = 0;
             int end = 0;
             //get request to grab site.main
@@ -76,14 +126,6 @@ public class Main {
 
         }
         return recipeUrls;
-    }
-    
-    public static String getRecipe(String url){
-        String recipe = "Recipe, name";
-        
-
-        
-        return recipe;
     }
 
 }
