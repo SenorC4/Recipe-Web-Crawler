@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 
     ///change this for different number of recipes
-    static int numOfRecipes = 96;
+    static int numOfRecipes = 2167;
     //Change this for different number of recipes
 
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -30,11 +30,11 @@ public class Main {
         for(int i = 0; i < numOfRecipes; i++) {
             //name,Author,Path,Name,Servings,Ingredients,Instructions
             String recipe = "";
-            int start;
-            int end;
+            int start = 0;
+            int end = 0;
 
             //Delay for the sake of Sur La Tables infrastructure
-            TimeUnit.SECONDS.sleep(10);
+            //TimeUnit.SECONDS.sleep(10);
 
             //get recipe site
             HttpClient client = HttpClient.newHttpClient();
@@ -44,11 +44,15 @@ public class Main {
             System.out.println(recipesUrls.get(i));
 
             //get name
-            String name;
-            start = response.body().indexOf("recipe-name") + 13;
-            end = response.body().indexOf("</h1>", start);
-            name = response.body().substring(start, end);
+            String name = "";
 
+            if(response.body().indexOf("recipe-name") > 1 && response.body().indexOf("/h1") > 1) {
+                start = response.body().indexOf("recipe-name") + 13;
+                end = response.body().indexOf("/h1", start) - 1;
+                name = response.body().substring(start, end);
+            }else{
+                name = "FAILED TO GET NAME";
+            }
             name = formatRecipe(name);
 
             System.out.println(name);
@@ -59,7 +63,7 @@ public class Main {
             //get author
             String author = "";
             System.out.println(i + " 2");
-            if (response.body().indexOf("By ", end) > 1) {
+            if (response.body().indexOf("By ", end) > 1 && response.body().indexOf("\n", start) > 1) {
                 start = response.body().indexOf("By ", end) + 3;
                 end = response.body().indexOf("\n", start);
                 author = response.body().substring(start, end) + ",";
@@ -75,7 +79,7 @@ public class Main {
             //get path
             String path = "";
             System.out.println(i + " 3");
-            if (response.body().lastIndexOf("\"@id\":\"https://www.surlatable.com/recipes/", end) > 1){
+            if (response.body().lastIndexOf("\"@id\":\"https://www.surlatable.com/recipes/", end) > 1 && response.body().indexOf("name", start) > 1){
                 start = response.body().lastIndexOf("\"@id\":\"https://www.surlatable.com/recipes/", end) + 33;
                 end = response.body().indexOf("name", start) - 3;
                 path = "home" + response.body().substring(start, end) + name;
@@ -92,10 +96,9 @@ public class Main {
             System.out.println(i + " 4");
             String servings;
 
-            if(response.body().indexOf("recipe-details-serves") > 1) {
+            if(response.body().indexOf("recipe-details-serves") > 1 && response.body().indexOf("</div>\n", start) > 1)  {
                 start = response.body().indexOf("recipe-details-serves") + 30;
                 end = response.body().indexOf("</div>\n", start)-1;
-
                 servings = response.body().substring(start, end);
                 servings = formatRecipe(servings);
             }else{
@@ -107,9 +110,15 @@ public class Main {
 
             //get ingredients
             System.out.println(i + " 5");
-            start = response.body().indexOf("recipe-details-ingredients") + 28;
-            end = response.body().indexOf("</div>\n", start);
-            String ingredients = response.body().substring(start, end) + ",";
+            String ingredients = "";
+
+            if(response.body().indexOf("recipe-details-ingredients") > 1 && response.body().indexOf("</div>\n", start) > 1) {
+                start = response.body().indexOf("recipe-details-ingredients") + 28;
+                end = response.body().indexOf("</div>\n", start);
+                ingredients = response.body().substring(start, end) + ",";
+            }else{
+                ingredients = "FAILED TO GET INGREDIENTS,";
+            }
 
             ingredients = formatRecipe(ingredients);
 
@@ -117,9 +126,15 @@ public class Main {
 
             //get Instructions
             System.out.println(i + " 6");
-            start = response.body().indexOf("recipe-details-procedure") + 26;
-            end = response.body().indexOf("</div>\n", start);
-            String instructions = response.body().substring(start, end) + ",";
+            String instructions = "";
+
+            if(response.body().indexOf("recipe-details-procedure") > 1 && response.body().indexOf("</div>\n", start) > 1) {
+                start = response.body().indexOf("recipe-details-procedure") + 26;
+                end = response.body().indexOf("</div>\n", start);
+                instructions = response.body().substring(start, end) + ",";
+            }else{
+                instructions = "FAILED TO GET INSTRUCTIONS,";
+            }
 
             instructions = formatRecipe(instructions);
 
@@ -131,7 +146,7 @@ public class Main {
             out += recipe + "\n";
 
             //debug only
-            System.out.println(i + ": " + out);
+            System.out.println(i + ": " + recipe);
         }
 
         //Write string to csv
@@ -177,7 +192,7 @@ public class Main {
 
             }
             //Delay for the sake of Sur La Tables infrastructure
-            TimeUnit.SECONDS.sleep(10);
+            //TimeUnit.SECONDS.sleep(10);
 
         }
         return recipeUrls;
@@ -194,10 +209,13 @@ public class Main {
 
         stuff = stuff.replace(",", "");
 
-        //I hate this, this sucks, please give me better libraries for html escape characters. Oracle I love you, but no
-        stuff = stuff.replaceAll("&rsquo;", "'");
+        //I hate this, this sucks, please give me better libraries for html escape characters.
+        stuff = stuff.replaceAll("&rsquo;", "\'");
+        stuff = stuff.replaceAll("&#8217;", "\'");
+        stuff = stuff.replaceAll("&lsquo;", "\'");
         stuff = stuff.replaceAll("&#38;#176;", " degrees ");
         stuff = stuff.replaceAll("&#176;", " degrees ");
+        stuff = stuff.replaceAll("&deg;", " degrees ");
 
         stuff = stuff.replaceAll("&#38;#38;", "&");
         stuff = stuff.replaceAll("&#38;amp;", "&");
@@ -205,23 +223,31 @@ public class Main {
         stuff = stuff.replaceAll("&#38;", "&");
 
         stuff = stuff.replaceAll("&eacute;", "e");
+        stuff = stuff.replaceAll("&#234;", "e");
+        stuff = stuff.replaceAll("&amp;#234;", "e");
+
         stuff = stuff.replaceAll("&#232;", "e");
         stuff = stuff.replaceAll("&#233;", "e");
+        stuff = stuff.replaceAll("&amp;#233;", "e");
+        stuff = stuff.replaceAll("&#224;", "a");
 
         stuff = stuff.replaceAll("&#188;", " 3/4");
         stuff = stuff.replaceAll("&#189;", " 1/2");
         stuff = stuff.replaceAll("&#190;", " 3/4");
 
         stuff = stuff.replaceAll("&#8531;", " 1/3");
-        stuff = stuff.replaceAll("&#8532", " 2/3");
+        stuff = stuff.replaceAll("&#8532;", " 2/3");
         stuff = stuff.replaceAll("&#8539;", " 1/8");
 
-        stuff = stuff.replaceAll("&#8217", "\'");
+        stuff = stuff.replaceAll("&lt;i&gt", "");
+
+
         stuff = stuff.replaceAll("&#8212;", "-");
         stuff = stuff.replaceAll("&#8211;", "-");
         stuff = stuff.replaceAll("&#8220;", "\"");
         stuff = stuff.replaceAll("&#8221;", "\"");
         stuff = stuff.replaceAll("&#34;", "\"");
+
 
 
         return stuff;
