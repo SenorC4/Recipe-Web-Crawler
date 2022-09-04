@@ -4,6 +4,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -26,7 +27,7 @@ public class Main {
 
 
         //get information and put into comma separated string
-        for(int i = 0; i < numOfRecipes; i++){
+        for(int i = 0; i < numOfRecipes; i++) {
             //name,Author,Path,Name,Servings,Ingredients,Instructions
             String recipe = "";
             int start;
@@ -40,8 +41,9 @@ public class Main {
             HttpRequest request = HttpRequest.newBuilder().uri(URI.create(recipesUrls.get(i))).GET().build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
+            System.out.println(recipesUrls.get(i));
+
             //get name
-            System.out.println(i + " 1");
             String name;
             start = response.body().indexOf("recipe-name") + 13;
             end = response.body().indexOf("</h1>", start);
@@ -49,27 +51,41 @@ public class Main {
 
             name = formatRecipe(name);
 
-            recipe+= name + ",";
+            System.out.println(name);
+
+            recipe += name + ",";
 
 
             //get author
+            String author = "";
             System.out.println(i + " 2");
-            start = response.body().indexOf("By ", end) + 3;
-            end = response.body().indexOf("\n", start);
-            String author = response.body().substring(start, end) + ",";
+            if (response.body().indexOf("By ", end) > 1) {
+                start = response.body().indexOf("By ", end) + 3;
+                end = response.body().indexOf("\n", start);
+                author = response.body().substring(start, end) + ",";
+            } else {
+                author = "No Author";
+            }
 
             author = formatRecipe(author);
+            System.out.println(author);
             recipe += author + ",";
             System.out.println(author);
 
             //get path
+            String path = "";
             System.out.println(i + " 3");
-            start = response.body().lastIndexOf("\"@id\":\"https://www.surlatable.com/recipes/", end) + 33;
-            end = response.body().indexOf("name", start) - 3;
-            String path = "home" + response.body().substring(start, end) + name + ",";
+            if (response.body().lastIndexOf("\"@id\":\"https://www.surlatable.com/recipes/", end) > 1){
+                start = response.body().lastIndexOf("\"@id\":\"https://www.surlatable.com/recipes/", end) + 33;
+                end = response.body().indexOf("name", start) - 3;
+                path = "home" + response.body().substring(start, end) + name;
+                System.out.println(path);
+                System.out.println(name);
+            }else{
+                path = "home/recipes/" + name;
+            }
             System.out.println(path);
-            System.out.println(name);
-            recipe += path;
+            recipe += path + ",";
 
 
             //get servings
@@ -77,32 +93,21 @@ public class Main {
             String servings;
 
             if(response.body().indexOf("recipe-details-serves") > 1) {
-                start = response.body().indexOf("recipe-details-serves") + 29;
+                start = response.body().indexOf("recipe-details-serves") + 30;
                 end = response.body().indexOf("</div>\n", start)-1;
 
                 servings = response.body().substring(start, end);
                 servings = formatRecipe(servings);
-                recipe += servings + ",";
             }else{
-                servings = "1,";
-                recipe += servings;
+                servings = "1 serving";
             }
-
-
-
-//            if(response.body().indexOf("ervings", start) > 1)
-//                end = response.body().indexOf("ervings", start) - 2;
-//            else if(response.body().indexOf(" cups", start) > 1){
-//                end = response.body().indexOf(" cups", start);
-//            }else{
-//                servings = "1";
-//            }
-
+            System.out.println(servings);
+            recipe += servings + ",";
 
 
             //get ingredients
             System.out.println(i + " 5");
-            start = response.body().indexOf("recipe-details-ingredients") + 34;
+            start = response.body().indexOf("recipe-details-ingredients") + 28;
             end = response.body().indexOf("</div>\n", start);
             String ingredients = response.body().substring(start, end) + ",";
 
@@ -112,11 +117,13 @@ public class Main {
 
             //get Instructions
             System.out.println(i + " 6");
-            start = response.body().indexOf("recipe-details-procedure") + 27;
+            start = response.body().indexOf("recipe-details-procedure") + 26;
             end = response.body().indexOf("</div>\n", start);
             String instructions = response.body().substring(start, end) + ",";
 
             instructions = formatRecipe(instructions);
+
+            System.out.println(instructions);
 
             recipe += instructions;
 
@@ -129,8 +136,8 @@ public class Main {
 
         //Write string to csv
         FileOutputStream fs = new FileOutputStream("Recipes.csv");
-        PrintWriter pw = new PrintWriter(fs);
-        pw.println(out);
+        OutputStreamWriter pw = new OutputStreamWriter(fs, StandardCharsets.UTF_8);
+        pw.write(out);
         pw.close();
 
     }
@@ -152,7 +159,7 @@ public class Main {
 
         //get request each site page and grab 24 recipe urls
         for(int i = 0; i < urls.size();i++ ) {
-            System.out.println("Getting first file");
+            System.out.println("Getting 24 recipes site file");
             int start;
             int end = 0;
             //get request to grab site.main
@@ -177,15 +184,44 @@ public class Main {
     }
 
     public static String formatRecipe(String stuff){
-        stuff = stuff.replaceAll("\\<.*?\\>" , "").replace("\n", " ").replace(",", "");
+        stuff = stuff.replaceAll("\\<.*?\\>" , "");
 
-        //i hate this, this sucks, please give me better libraries for html escape characters. Oracle I love you, but no
+        stuff = stuff.replace("&nbsp;", "");
+
+        stuff = stuff.replace("\r\n", " ");
+        stuff = stuff.replace("\n", " ");
+        stuff = stuff.replace("\r", " ");
+
+        stuff = stuff.replace(",", "");
+
+        //I hate this, this sucks, please give me better libraries for html escape characters. Oracle I love you, but no
         stuff = stuff.replaceAll("&rsquo;", "'");
-        stuff = stuff.replaceAll("&#38;#176;", "°");
+        stuff = stuff.replaceAll("&#38;#176;", " degrees ");
+        stuff = stuff.replaceAll("&#176;", " degrees ");
+
         stuff = stuff.replaceAll("&#38;#38;", "&");
         stuff = stuff.replaceAll("&#38;amp;", "&");
         stuff = stuff.replaceAll("&amp;", "&");
         stuff = stuff.replaceAll("&#38;", "&");
+
+        stuff = stuff.replaceAll("&eacute;", "e");
+        stuff = stuff.replaceAll("&#232;", "e");
+        stuff = stuff.replaceAll("&#233;", "e");
+
+        stuff = stuff.replaceAll("&#188;", " 3/4");
+        stuff = stuff.replaceAll("&#189;", " 1/2");
+        stuff = stuff.replaceAll("&#190;", " 3/4");
+
+        stuff = stuff.replaceAll("&#8531;", " 1/3");
+        stuff = stuff.replaceAll("&#8532", " 2/3");
+        stuff = stuff.replaceAll("&#8539;", " 1/8");
+
+        stuff = stuff.replaceAll("&#8217", "\'");
+        stuff = stuff.replaceAll("&#8212;", "-");
+        stuff = stuff.replaceAll("&#8211;", "-");
+        stuff = stuff.replaceAll("&#8220;", "\"");
+        stuff = stuff.replaceAll("&#8221;", "\"");
+        stuff = stuff.replaceAll("&#34;", "\"");
 
 
         return stuff;
