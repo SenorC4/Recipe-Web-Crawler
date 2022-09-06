@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 
     ///change this for different number of recipes
-    static int numOfRecipes = 96;
+    static int numOfRecipes = 2167;
     //Change this for different number of recipes
 
     //url is in getSource() if you need to change it
@@ -34,7 +34,7 @@ public class Main {
             int end = 0;
 
             //Delay for the sake of Sur La Tables infrastructure
-            TimeUnit.SECONDS.sleep(10);
+            //TimeUnit.SECONDS.sleep(10);
 
             //get recipe site
             HttpClient client = HttpClient.newHttpClient();
@@ -195,6 +195,9 @@ public class Main {
 
         //fix whitespace, newline and commas
         stuff = stuff.replace("&nbsp;", "");
+        stuff = stuff.replace("&#8232;", "");
+        stuff = stuff.replaceAll("&lt;i&gt", "");
+        stuff = stuff.replaceAll("&#187;", "");
 
         stuff = stuff.replace("\r\n", " ");
         stuff = stuff.replace("\n", " ");
@@ -204,21 +207,42 @@ public class Main {
 
         //fix special unicode only characters to ascii
         //I hate this, this sucks, please give me better libraries for html escape characters.
-        stuff = stuff.replaceAll("&rsquo;", "\'");
-        stuff = stuff.replaceAll("&#8217;", "\'");
-        stuff = stuff.replaceAll("&lsquo;", "\'");
-        stuff = stuff.replaceAll("’", "'");
         stuff = stuff.replaceAll("&#38;#176;", " degrees ");
         stuff = stuff.replaceAll("&#186;", " degrees ");
         stuff = stuff.replaceAll("&#176;", " degrees ");
         stuff = stuff.replaceAll("&#176", " degrees ");
-
         stuff = stuff.replaceAll("&deg;", " degrees ");
-        stuff = stuff.replaceAll("&#174;", "reserved");
-        stuff = stuff.replaceAll("&#8482;", "TM");
-        stuff = stuff.replaceAll("&#169;", "Copywrite");
+        stuff = stuff.replaceAll("&#17;", " degrees ");
+
+        stuff = stuff.replaceAll("&#174;", "reserved ");
+        stuff = stuff.replaceAll("&#8482;", "TM ");
+        stuff = stuff.replaceAll("&#169;", "Copywrite ");
+
+        stuff = stuff.replaceAll("&#8260;", "/");
+
+        stuff = stuff.replaceAll("&#45;", "-");
+        stuff = stuff.replaceAll("&#8212;", "-");
+        stuff = stuff.replaceAll("&#8212", "-");
+        stuff = stuff.replaceAll("&#8211;", "-");
+        stuff = stuff.replaceAll("&#8211", "-");
+
+        stuff = stuff.replaceAll("’", "'");
+        stuff = stuff.replaceAll("&#39;", "'");
+        stuff = stuff.replaceAll("&#8216;", "'");
+        stuff = stuff.replaceAll("&rsquo;", "\'");
+        stuff = stuff.replaceAll("&#8217;", "\'");
+        stuff = stuff.replaceAll("&lsquo;", "\'");
+        stuff = stuff.replaceAll("&#8220;", "\"");
+        stuff = stuff.replaceAll("&#8221;", "\"");
+        stuff = stuff.replaceAll("&#34;", "\"");
+        stuff = stuff.replaceAll("&#34", "\"");
+
+
         stuff = stuff.replaceAll("&#37;", "%");
         stuff = stuff.replaceAll("&#8727;", "*");
+        stuff = stuff.replaceAll("&#8727", "*");
+        stuff = stuff.replaceAll("&#40;", "(");
+        stuff = stuff.replaceAll("&#41;", ")");
 
         stuff = stuff.replaceAll("&#38;#38;", "&");
         stuff = stuff.replaceAll("&#38;amp;", "&");
@@ -231,39 +255,40 @@ public class Main {
         stuff = stuff.replaceAll("&amp;#233;", "e");
         stuff = stuff.replaceAll("&eacute;", "e");
         stuff = stuff.replaceAll("&#234;", "e");
-
         stuff = stuff.replaceAll("&#232;", "e");
+        stuff = stuff.replaceAll("&#232", "e");
         stuff = stuff.replaceAll("&#233;", "e");
 
         stuff = stuff.replaceAll("&#224;", "a");
         stuff = stuff.replaceAll("&#226;", "a");
+        stuff = stuff.replaceAll("&#226", "a");
 
         stuff = stuff.replaceAll("&#238;", "i");
+        stuff = stuff.replaceAll("&#236;", "i");
+
         stuff = stuff.replaceAll("&#243;", "o");
+        stuff = stuff.replaceAll("&#244;", "o");
 
         stuff = stuff.replaceAll("&#241;", "n");
+        stuff = stuff.replaceAll("&#231;", "c");
 
         stuff = stuff.replaceAll("&#188;", " 3/4");
+        stuff = stuff.replaceAll("&#188", " 3/4");
+        stuff = stuff.replaceAll("&#190;", " 3/4");
+
+
         stuff = stuff.replaceAll("&#189;", " 1/2");
         stuff = stuff.replaceAll("&#189", " 1/2");
-        stuff = stuff.replaceAll("&#190;", " 3/4");
 
         stuff = stuff.replaceAll("&#8531;", " 1/3");
         stuff = stuff.replaceAll("&#8532;", " 2/3");
+        stuff = stuff.replaceAll("&#8532", " 2/3");
         stuff = stuff.replaceAll("&#8539;", " 1/8");
+        stuff = stuff.replaceAll("&#8540;", " 3/8");
 
-        stuff = stuff.replaceAll("&lt;i&gt", "");
-
-        stuff = stuff.replaceAll("&#45;", "-");
-        stuff = stuff.replaceAll("&#8212;", "-");
-        stuff = stuff.replaceAll("&#8211;", "-");
-        stuff = stuff.replaceAll("&#8211", "-");
-
-        stuff = stuff.replaceAll("&#187;", "");
-
-        stuff = stuff.replaceAll("&#8220;", "\"");
-        stuff = stuff.replaceAll("&#8221;", "\"");
-        stuff = stuff.replaceAll("&#34;", "\"");
+        stuff = stuff.replaceAll("&#185;", " 1");
+        stuff = stuff.replaceAll("&#178;", " 2");
+        stuff = stuff.replaceAll("&#179;", " 3");
 
         return stuff;
     }
