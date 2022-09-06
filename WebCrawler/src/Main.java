@@ -34,7 +34,7 @@ public class Main {
             int end = 0;
 
             //Delay for the sake of Sur La Tables infrastructure
-            //TimeUnit.SECONDS.sleep(10);
+            TimeUnit.SECONDS.sleep(10);
 
             //get recipe site
             HttpClient client = HttpClient.newHttpClient();
@@ -216,6 +216,7 @@ public class Main {
 
         stuff = stuff.replaceAll("&#174;", "reserved ");
         stuff = stuff.replaceAll("&#8482;", "TM ");
+        stuff = stuff.replaceAll("&#8482", "TM ");
         stuff = stuff.replaceAll("&#169;", "Copywrite ");
 
         stuff = stuff.replaceAll("&#8260;", "/");
@@ -225,15 +226,18 @@ public class Main {
         stuff = stuff.replaceAll("&#8212", "-");
         stuff = stuff.replaceAll("&#8211;", "-");
         stuff = stuff.replaceAll("&#8211", "-");
+        stuff = stuff.replaceAll("&#8226;", "-");
 
         stuff = stuff.replaceAll("’", "'");
         stuff = stuff.replaceAll("&#39;", "'");
         stuff = stuff.replaceAll("&#8216;", "'");
         stuff = stuff.replaceAll("&rsquo;", "\'");
         stuff = stuff.replaceAll("&#8217;", "\'");
+        stuff = stuff.replaceAll("&#8217", "\'");
         stuff = stuff.replaceAll("&lsquo;", "\'");
         stuff = stuff.replaceAll("&#8220;", "\"");
         stuff = stuff.replaceAll("&#8221;", "\"");
+        stuff = stuff.replaceAll("&#8221", "\"");
         stuff = stuff.replaceAll("&#34;", "\"");
         stuff = stuff.replaceAll("&#34", "\"");
 
@@ -258,6 +262,7 @@ public class Main {
         stuff = stuff.replaceAll("&#232;", "e");
         stuff = stuff.replaceAll("&#232", "e");
         stuff = stuff.replaceAll("&#233;", "e");
+        stuff = stuff.replaceAll("&#200;", "e");
 
         stuff = stuff.replaceAll("&#224;", "a");
         stuff = stuff.replaceAll("&#226;", "a");
@@ -268,6 +273,9 @@ public class Main {
 
         stuff = stuff.replaceAll("&#243;", "o");
         stuff = stuff.replaceAll("&#244;", "o");
+        stuff = stuff.replaceAll("&#248;", "o");
+
+        stuff = stuff.replaceAll("&#252;", "u");
 
         stuff = stuff.replaceAll("&#241;", "n");
         stuff = stuff.replaceAll("&#231;", "c");
@@ -275,6 +283,7 @@ public class Main {
         stuff = stuff.replaceAll("&#188;", " 3/4");
         stuff = stuff.replaceAll("&#188", " 3/4");
         stuff = stuff.replaceAll("&#190;", " 3/4");
+        stuff = stuff.replaceAll("&#190", " 3/4");
 
 
         stuff = stuff.replaceAll("&#189;", " 1/2");

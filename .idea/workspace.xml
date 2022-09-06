@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Recipes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Recipes.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebCrawler/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebCrawler/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Recipe-Web-Crawler/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Recipe-Web-Crawler/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +45,7 @@
       <workItem from="1662242082200" duration="15433000" />
       <workItem from="1662327391246" duration="7163000" />
       <workItem from="1662336886305" duration="66000" />
-      <workItem from="1662447843058" duration="4360000" />
+      <workItem from="1662447843058" duration="6059000" />
     </task>
     <servers />
   </component>
