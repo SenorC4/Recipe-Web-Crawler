@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 
     ///change this for different number of recipes
-    static int numOfRecipes = 2167;
+    static int numOfRecipes = 24;
     //Change this for different number of recipes
 
     //url is in getSource() if you need to change it
@@ -105,7 +105,7 @@ public class Main {
             String ingredients = "";
 
             if(response.body().indexOf("recipe-details-ingredients") > 1 && response.body().indexOf("</div>\n", start) > 1) {
-                start = response.body().indexOf("recipe-details-ingredients") + 34;
+                start = response.body().indexOf("recipe-details-ingredients") + 28;
                 end = response.body().indexOf("</div>\n", start);
                 ingredients = response.body().substring(start, end) + ",";
             }else{
@@ -198,6 +198,8 @@ public class Main {
         stuff = stuff.replace("&#8232;", "");
         stuff = stuff.replaceAll("&lt;i&gt", "");
         stuff = stuff.replaceAll("&#187;", "");
+        stuff = stuff.replaceAll("Â", "");
+
 
         stuff = stuff.replace("\r\n", " ");
         stuff = stuff.replace("\n", " ");
@@ -280,6 +282,14 @@ public class Main {
 
         stuff = stuff.replaceAll("&#241;", "n");
         stuff = stuff.replaceAll("&#231;", "c");
+
+        stuff = stuff.replaceAll("¾", " 3/4");
+        stuff = stuff.replaceAll("½", " 1/2");
+        stuff = stuff.replaceAll("¼", " 1/4");
+        stuff = stuff.replaceAll("⅛", " 1/8");
+        stuff = stuff.replaceAll("⅜", " 3/8");
+
+        stuff = stuff.replaceAll("&#188;", " 3/4");
 
         stuff = stuff.replaceAll("&#188;", " 3/4");
         stuff = stuff.replaceAll("&#188", " 3/4");

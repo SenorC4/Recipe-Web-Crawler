@@ -2,66 +2,60 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="Recipe-Web-Crawler:jar" />
+      <artifact name="WebCrawler:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb0fdf02-a424-4169-b581-36b34fdbebc8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Recipe_Web_Crawler_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recipes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Recipes.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebCrawler/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebCrawler/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Recipe-Web-Crawler/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Recipe-Web-Crawler/Main.class" afterDir="false" />
-    </list>
+    <list default="true" id="a97d1169-db1b-4672-9b19-f9001a6edfd6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2EBbkcXU6TASq1V6rMoZlbNlIMY" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2EB3xR4PHKvVT0GLs5p5ZIkTja6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/lukel/Documents/GitHub/Recipe-Web-Crawler",
+    "last_opened_file_path": "C:/Users/lukel/Documents/Recipe-Web-Crawler",
     "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "advanced.settings"
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="eb0fdf02-a424-4169-b581-36b34fdbebc8" name="Changes" comment="" />
-      <created>1662072070932</created>
+      <changelist id="a97d1169-db1b-4672-9b19-f9001a6edfd6" name="Changes" comment="" />
+      <created>1662055400651</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1662072070932</updated>
-      <workItem from="1662072081263" duration="169000" />
-      <workItem from="1662098101759" duration="5740000" />
-      <workItem from="1662189411675" duration="11496000" />
-      <workItem from="1662242082200" duration="15433000" />
-      <workItem from="1662327391246" duration="7163000" />
-      <workItem from="1662336886305" duration="66000" />
-      <workItem from="1662447843058" duration="7050000" />
-      <workItem from="1662529802931" duration="11000" />
-      <workItem from="1662529884075" duration="37000" />
-      <workItem from="1662529941130" duration="2008000" />
-      <workItem from="1662540213559" duration="135000" />
+      <updated>1662055400651</updated>
+      <workItem from="1662055405157" duration="43000" />
+      <workItem from="1662057186694" duration="1207000" />
+      <workItem from="1662071399670" duration="1604000" />
+      <workItem from="1662167907116" duration="340000" />
+      <workItem from="1662168258957" duration="2103000" />
+      <workItem from="1662177051546" duration="2361000" />
+      <workItem from="1662482256894" duration="53000" />
+      <workItem from="1662487984538" duration="1585000" />
+      <workItem from="1662570598599" duration="2307000" />
+      <workItem from="1662573730563" duration="683000" />
     </task>
     <servers />
   </component>
@@ -78,15 +72,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.StringIndexOutOfBoundsException" package="java.lang" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

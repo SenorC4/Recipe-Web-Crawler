@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="Recipe-Web-Crawler:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/Recipe_Web_Crawler_jar</output-path>
-    <root id="archive" name="Recipe-Web-Crawler.jar">
-      <element id="module-output" name="Recipe-Web-Crawler" />
-    </root>
-  </artifact>
-</component>
