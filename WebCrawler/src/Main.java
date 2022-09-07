@@ -218,6 +218,7 @@ public class Main {
         stuff = stuff.replaceAll("&#8482;", "TM ");
         stuff = stuff.replaceAll("&#8482", "TM ");
         stuff = stuff.replaceAll("&#169;", "Copywrite ");
+        stuff = stuff.replaceAll("&copy;", "Copywrite ");
 
         stuff = stuff.replaceAll("&#8260;", "/");
 

@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Recipe-Web-Crawler:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="eb0fdf02-a424-4169-b581-36b34fdbebc8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Recipe_Web_Crawler_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Recipes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Recipes.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebCrawler/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebCrawler/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Recipe-Web-Crawler/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Recipe-Web-Crawler/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,15 +29,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/lukel/Documents/GitHub/Recipe-Web-Crawler&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/lukel/Documents/GitHub/Recipe-Web-Crawler",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "advanced.settings"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -45,7 +57,11 @@
       <workItem from="1662242082200" duration="15433000" />
       <workItem from="1662327391246" duration="7163000" />
       <workItem from="1662336886305" duration="66000" />
-      <workItem from="1662447843058" duration="6059000" />
+      <workItem from="1662447843058" duration="7050000" />
+      <workItem from="1662529802931" duration="11000" />
+      <workItem from="1662529884075" duration="37000" />
+      <workItem from="1662529941130" duration="2008000" />
+      <workItem from="1662540213559" duration="135000" />
     </task>
     <servers />
   </component>
