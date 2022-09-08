@@ -297,12 +297,8 @@ public class Main {
         stuff = stuff.replaceAll("¼", " 1/4");
         stuff = stuff.replaceAll("⅛", " 1/8");
         stuff = stuff.replaceAll("⅜", " 3/8");
-        stuff = stuff.replaceAll("⁄", "/");
-
-
 
         stuff = stuff.replaceAll("&#188;", " 3/4");
-
         stuff = stuff.replaceAll("&#188;", " 3/4");
         stuff = stuff.replaceAll("&#188", " 3/4");
         stuff = stuff.replaceAll("&#190;", " 3/4");
@@ -317,6 +313,8 @@ public class Main {
         stuff = stuff.replaceAll("&#8532", " 2/3");
         stuff = stuff.replaceAll("&#8539;", " 1/8");
         stuff = stuff.replaceAll("&#8540;", " 3/8");
+        
+        stuff = stuff.replaceAll("⁄", "/");
 
         stuff = stuff.replaceAll("&#185;", " 1");
         stuff = stuff.replaceAll("&#178;", " 2");
