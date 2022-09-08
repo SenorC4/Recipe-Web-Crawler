@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 
     ///change this for different number of recipes
-    static int numOfRecipes = 24;
+    static int numOfRecipes = 96;
     //Change this for different number of recipes
 
     //url is in getSource() if you need to change it
@@ -196,9 +196,12 @@ public class Main {
         //fix whitespace, newline and commas
         stuff = stuff.replace("&nbsp;", "");
         stuff = stuff.replace("&#8232;", "");
+        stuff = stuff.replace("&emsp;", "");
+        stuff = stuff.replace(" ", "");
         stuff = stuff.replaceAll("&lt;i&gt", "");
         stuff = stuff.replaceAll("&#187;", "");
-        stuff = stuff.replaceAll("Â", "");
+        stuff = stuff.replaceAll("»", "");
+
 
 
         stuff = stuff.replace("\r\n", " ");
@@ -215,6 +218,8 @@ public class Main {
         stuff = stuff.replaceAll("&#176", " degrees ");
         stuff = stuff.replaceAll("&deg;", " degrees ");
         stuff = stuff.replaceAll("&#17;", " degrees ");
+        stuff = stuff.replaceAll("º", " degrees ");
+        stuff = stuff.replaceAll("°", " degrees ");
 
         stuff = stuff.replaceAll("&#174;", "reserved ");
         stuff = stuff.replaceAll("&#8482;", "TM ");
@@ -234,6 +239,8 @@ public class Main {
         stuff = stuff.replaceAll("’", "'");
         stuff = stuff.replaceAll("&#39;", "'");
         stuff = stuff.replaceAll("&#8216;", "'");
+        stuff = stuff.replaceAll("”", "\"");
+        stuff = stuff.replaceAll("“", "\"");
         stuff = stuff.replaceAll("&rsquo;", "\'");
         stuff = stuff.replaceAll("&#8217;", "\'");
         stuff = stuff.replaceAll("&#8217", "\'");
@@ -285,9 +292,14 @@ public class Main {
 
         stuff = stuff.replaceAll("¾", " 3/4");
         stuff = stuff.replaceAll("½", " 1/2");
+        stuff = stuff.replaceAll("⅓", " 1/3");
+
         stuff = stuff.replaceAll("¼", " 1/4");
         stuff = stuff.replaceAll("⅛", " 1/8");
         stuff = stuff.replaceAll("⅜", " 3/8");
+        stuff = stuff.replaceAll("⁄", "/");
+
+
 
         stuff = stuff.replaceAll("&#188;", " 3/4");
 
