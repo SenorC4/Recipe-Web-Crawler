@@ -6,14 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a97d1169-db1b-4672-9b19-f9001a6edfd6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Recipes.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/WebCrawler/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/WebCrawler/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="a97d1169-db1b-4672-9b19-f9001a6edfd6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,6 +64,7 @@
       <workItem from="1662602089612" duration="5000" />
       <workItem from="1662619539276" duration="668000" />
       <workItem from="1662623521705" duration="16000" />
+      <workItem from="1663141317419" duration="116000" />
     </task>
     <servers />
   </component>
